@@ -15,12 +15,21 @@ SYNO.FileStation.CopyMove.status
 SYNO.FileStation.CopyMove.stop
 ```
 
+## Installation
+`go get github.com/MSIFLA/GoSDK-SynologyFileStation`
+
 ## Getting Started
 ```go
 package main
 
 import (
-  ""
+  "github.com/MSIFLA/GoSDK-SynologyFileStation/pkg/api"
+)
+
+const (
+	host     = "YOUR_HOST_ADDRESS"
+	user     = "YOUR_API_USER"
+	password = "YOUR_USER_PASSWORD"
 )
 
 func main() {
@@ -35,5 +44,18 @@ func main() {
   defer func(fs *api.FileStation) {
     _ = fs.Close()
   }(fs)
+}
+```
+
+## FileStation:List
+```go
+resp, err := fs.List(&api.ListDirRequest{
+	Path:          "/Folder/Path",
+    SortBy:        "name",
+    SortDirection: "desc",
+    Additional:    "[\"size\", \"time\"]",
+})
+if err != nil {
+    panic(err)
 }
 ```
