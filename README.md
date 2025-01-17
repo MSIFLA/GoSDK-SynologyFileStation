@@ -9,7 +9,10 @@ Golang SDK for the Synology File Station API
 ```
 SYNO.API.Auth.login
 SYNO.API.Auth.logout
+SYNO.FileStation.Info.get
 SYNO.FileStation.List.list
+SYNO.FileStation.VirtualFolder.list
+SYNO.FileStation.Thumb.get
 SYNO.FileStation.CopyMove.start
 SYNO.FileStation.CopyMove.status
 SYNO.FileStation.CopyMove.stop
@@ -85,6 +88,20 @@ if err != nil {
 **Stopping a CopyMove Operation Early:**
 ```go
 _, err = fs.CopyMoveStop(&api.CopyMoveStopRequest{TaskId: copyStart.Data.TaskID})
+if err != nil {
+  panic(err)
+}
+```
+
+## FileStation: Thumb
+**Getting a TIFF file Thumbnail**
+```go
+// Returns []byte as API endpoint returns raw data
+resp, err := fs.ThumbGet(&api.ThumbGetRequest{Path: "/folder/file.tif"})
+if err != nil {
+  panic(err)
+}
+err = os.WriteFile("test.tif", resp, 0644)
 if err != nil {
   panic(err)
 }
