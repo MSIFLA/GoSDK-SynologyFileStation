@@ -47,15 +47,45 @@ func main() {
 }
 ```
 
-## FileStation:List
+## FileStation: List
+**Listing a Directory, Sorted by Name Descending with Size & Time Info:**
 ```go
 resp, err := fs.List(&api.ListDirRequest{
-	Path:          "/Folder/Path",
-    SortBy:        "name",
-    SortDirection: "desc",
-    Additional:    "[\"size\", \"time\"]",
+  Path:          "/folder/path",
+  SortBy:        "name",
+  SortDirection: "desc",
+  Additional:    "[\"size\", \"time\"]",
 })
 if err != nil {
-    panic(err)
+  panic(err)
+}
+```
+
+## FileStation: CopyMove
+**Starting a CopyMove Operation:**
+```go
+// Directories only used as examples
+copyStart, err := fs.CopyMoveStart(&api.CopyMoveStartRequest{
+  Path:           "/folder/path",
+  DestFolderPath: "/usbshare1/destination",
+})
+if err != nil {
+  panic(err)
+}
+```
+
+**Checking the Status of a CopyMove Operation:**
+```go
+status, err := fs.CopyMoveStatus(&api.CopyMoveStatusRequest{TaskId: copyStart.Data.TaskID})
+if err != nil {
+  panic(err)
+}
+```
+
+**Stopping a CopyMove Operation Early:**
+```go
+_, err = fs.CopyMoveStop(&api.CopyMoveStopRequest{TaskId: copyStart.Data.TaskID})
+if err != nil {
+  panic(err)
 }
 ```
