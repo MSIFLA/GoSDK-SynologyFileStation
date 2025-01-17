@@ -1,8 +1,8 @@
 package api
 
 import (
-	"GoSDK-SynologyFileStation/internal/data"
 	"fmt"
+	"github.com/MSIFLA/GoSDK-SynologyFileStation/internal/data"
 	"io"
 	"net/http"
 	"net/url"

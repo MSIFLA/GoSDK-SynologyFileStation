@@ -1,7 +1,7 @@
 package api
 
 import (
-	"GoSDK-SynologyFileStation/internal/data"
+	"github.com/MSIFLA/GoSDK-SynologyFileStation/internal/data"
 	"io"
 )
 

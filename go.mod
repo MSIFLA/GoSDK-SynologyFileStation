@@ -1,1 +1,1 @@
-module GoSDK-SynologyFileStation
+module github.com/MSIFLA/GoSDK-SynologyFileStation
