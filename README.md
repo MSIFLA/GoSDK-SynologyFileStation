@@ -106,3 +106,16 @@ if err != nil {
   panic(err)
 }
 ```
+
+## FileStation: CreateFolder
+**Creating a Folder**
+```go
+resp, err := fs.CreateFolderCreate(&api.CreateFolderCreateRequest{
+  FolderPath:  "/folder/base_path",
+  Name:        "folder_name",
+  ForceParent: true,
+})
+if err != nil {
+  panic(err)
+}
+```
