@@ -16,6 +16,7 @@ SYNO.FileStation.Thumb.get
 SYNO.FileStation.CopyMove.start
 SYNO.FileStation.CopyMove.status
 SYNO.FileStation.CopyMove.stop
+SYNO.FileStation.Download.download
 ```
 
 ## Installation
@@ -115,6 +116,23 @@ resp, err := fs.CreateFolderCreate(&api.CreateFolderCreateRequest{
   Name:        "folder_name",
   ForceParent: true,
 })
+if err != nil {
+  panic(err)
+}
+```
+
+## FileStation: Download
+**Downloading a File**
+> If a files direct path is specified, the file's bytes will be returned. If a folder is specified the contents of the requested path will be returned as a zip file.
+```go
+resp, err := fs.Download(&api.DownloadRequest{
+  Path: "/folder/path",
+  Mode: "download",
+})
+if err != nil {
+  panic(err)
+}
+err = os.WriteFile("test.zip", resp, 0644)
 if err != nil {
   panic(err)
 }
